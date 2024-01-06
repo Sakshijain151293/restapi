@@ -1,0 +1,17 @@
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/leads")
+public class LeadController {
+
+    @Autowired
+    private LeadService leadService;
+
+    @PostMapping
+    public ResponseEntity<?> createLead(@RequestBody Lead lead) {
+        Lead createdLead = leadService.createLead(lead);
+        return ResponseEntity.ok(new ApiResponse("success", "Created Leads Successfully"));
+    }
+}

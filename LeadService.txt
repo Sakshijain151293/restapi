@@ -1,0 +1,23 @@
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+@Service
+public class LeadService {
+
+    @Autowired
+    private LeadRepository leadRepository;
+
+    public Lead createLead(Lead lead) {
+        if (leadRepository.existsByLeadId(lead.getLeadId())) {
+            throw new LeadExistsException("Lead Already Exists in the database with the lead id");
+        }
+
+        if (leadRepository.existsByEmail(lead.getEmail())) {
+            throw new EmailExistsException("Lead Already Exists in the database with the email");
+        }
+
+        return leadRepository.save(lead);
+    }
+}

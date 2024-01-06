@@ -1,0 +1,14 @@
+@RunWith(MockitoJUnitRunner.class)
+public class LeadControllerTest {
+
+    @Mock
+    private LeadService leadService;
+
+    @InjectMocks
+    private LeadController leadController;
+
+    @Test
+    public void testCreateLead() {
+        // Write test cases
+    }
+}
